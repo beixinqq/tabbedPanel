@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .tabbedPanel{
+            margin: 10px auto;
+            width: 400px;
+            height: 250px;
+        }
+        .tabbedGroup{
+            padding: 10px;
+        }
+        .tabbedGroup .tab{
+            float: left;
+            width: 80px;
+            line-height: 30px;
+            margin-right:5px ;
+            border: 1px solid black;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+        .tabbedGroup .selectTab{
+            background: cornflowerblue;
+            color: white;
+            font-weight: 900;
+
+        }
+        .contentGroup{
+            clear: both;
+            position: relative;
+        }
+        .contentGroup .content{
+            display: none;
+            position: absolute;
+            top:-1px;
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 50px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        .contentGroup .selectContent{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="tabbedPanel">
+    <ul class="tabbedGroup">
+        <li class="tab tab1 selectTab">新闻</li>
+        <li class="tab tab2">健康</li>
+        <li class="tab tab3">美女</li>
+        <li class="tab tab4">生活</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content content1 selectContent">新闻</div>
+        <div class="content content2">健康</div>
+        <div class="content content3">美女</div>
+        <div class="content content4">生活</div>
+    </div>
+</div>
+<!---->
+<div class="tabbedPanel">
+    <ul class="tabbedGroup">
+        <li class="tab tab1 selectTab">新闻</li>
+        <li class="tab tab2">健康</li>
+        <li class="tab tab3">美女</li>
+        <li class="tab tab4">生活</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content content1 selectContent">新闻</div>
+        <div class="content content2">健康</div>
+        <div class="content content3">美女</div>
+        <div class="content content4">生活</div>
+    </div>
+</div>
+<!---->
+<div class="tabbedPanel">
+    <ul class="tabbedGroup">
+        <li class="tab tab1 selectTab">新闻</li>
+        <li class="tab tab2">健康</li>
+        <li class="tab tab3">美女</li>
+        <li class="tab tab4">生活</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content content1 selectContent">新闻</div>
+        <div class="content content2">健康</div>
+        <div class="content content3">美女</div>
+        <div class="content content4">生活</div>
+    </div>
+</div>
+<!---->
+</body>
+<script src="js/DOM.js"></script>
+<script>
+  var lis=DOM.getByClassName('tab');
+  for(var i=0;i<lis.length;i++){
+      lis[i].onclick=changeTab;
+  }
+
+  function changeTab(index) {
+      var n=DOM.getIndex(this);
+      console.log(n);
+
+      DOM.addClass(this,'selectTab');
+
+      var a=DOM.siblings(this);
+      for(var i=0;i<a.length;i++){
+          DOM.removeClass(a[i],'selectTab');
+      }
+
+      var next=DOM.next(this.parentNode);
+      var divs=DOM.children1(next,'div');
+      for(var i=0;i<divs.length;i++){
+          DOM.removeClass(divs[i],'selectContent');
+      }
+      DOM.addClass(divs[n],'selectContent');
+
+  }
+</script>
+</html>
